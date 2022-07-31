@@ -1,0 +1,32 @@
+func timeRequiredToBuy(tickets []int, k int) int {
+    var time int
+	var n int
+    var o int
+    var p int
+    var h int 
+	n = len(tickets)
+    h=tickets[k]
+    p=n
+    o=k
+	for j := 0; j < h; j++ {
+		for i := 0; i < p; i++ {
+			if tickets[i] == 0{
+                tickets[i]=-1
+                if i<k{
+                    o-=1
+                    n-=1
+                }else if i>k{
+                    n-=1
+                }
+			} else if tickets[i] > 0 {
+				if tickets[i]==1&&i==k{
+                    time+=o+1
+                    return time
+                }
+                tickets[i] -= 1
+			}
+		}
+		time += n
+	}
+    return time
+}
